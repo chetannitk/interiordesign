@@ -256,20 +256,31 @@
 
     <script src="js/main.js"></script>
 
-   
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
-  <script>
-  var config ={
-              apiKey: "AIzaSyAnb-z9OO1xVwVJWk_ZSWCUvQdNMS_jTjc",
-              authDomain: "interiordesign.firebaseapp.com",
-              databaseURL: "https://interiordesign-31eb7.firebaseio.com/",
-              storageBucket: "interiordesign-31eb7.appspot.com",
-              messagingSenderId: "1014464898527"
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAnb-z9OO1xVwVJWk_ZSWCUvQdNMS_jTjc",
+    authDomain: "interiordesign-31eb7.firebaseapp.com",
+    databaseURL: "https://interiordesign-31eb7.firebaseio.com",
+    projectId: "interiordesign-31eb7",
+    storageBucket: "interiordesign-31eb7.appspot.com",
+    messagingSenderId: "1014464898527",
+    appId: "1:1014464898527:web:e5ef13e2926da1a25f106a",
+    measurementId: "G-W7N7DRH14L"
   };
-  firebase.initializeApp(config);
-
- function saveToFirebase(email) {
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>   
+<script>
+function saveToFirebase(email) {
     var emailObject = {
         email: email
     };
@@ -283,10 +294,9 @@
         });
 }
 
-saveToFirebase("chetanknmiet");
+</script>
 
-  </script>
-
+saveToFirebase("chetanknmiet@gmail.com");
   </body>
 
 </html>
