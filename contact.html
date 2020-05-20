@@ -212,7 +212,7 @@
                 <div class="input-group mb-3">
                   <input type="text" class="form-control rounded-0 border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
                   <div class="input-group-append">
-                    <button class="btn btn-primary text-white" type="button" id="button-addon2">Subscribe</button>
+                    <button class="btn btn-primary text-white" type="button" id="button-addon2" onclick="saveToFirebase('chetanknmiet@gmail.com')">Subscribe</button>
                   </div>
                 </div>
             </div>
@@ -256,7 +256,36 @@
 
     <script src="js/main.js"></script>
 
-    
+   
+
+  <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+  <script>
+  var config ={
+              apiKey: "AIzaSyAnb-z9OO1xVwVJWk_ZSWCUvQdNMS_jTjc",
+              authDomain: "interiordesign.firebaseapp.com",
+              databaseURL: "https://interiordesign-31eb7.firebaseio.com/",
+              storageBucket: "interiordesign-31eb7.appspot.com",
+              messagingSenderId: ""
+  };
+  firebase.initializeApp(config);
+
+ function saveToFirebase(email) {
+    var emailObject = {
+        email: email
+    };
+
+    firebase.database().ref('subscription-entries').push().set(emailObject)
+        .then(function(snapshot) {
+            success(); // some success method
+        }, function(error) {
+            console.log('error' + error);
+            error(); // some error method
+        });
+}
+
+saveToFirebase(email);
+
+  </script>
 
   </body>
 
