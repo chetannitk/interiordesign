@@ -107,27 +107,27 @@
             <form action="#" method="post">
               <div class="form-group row">
                 <div class="col-md-6 mb-4 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
+                  <input type="text" class="form-control" placeholder="First name" name="first">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="First name">
+                  <input type="text" class="form-control" placeholder="Last name" name="last">
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Email address">
+                  <input type="text" class="form-control" placeholder="Email address" name="email">
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30" rows="10"></textarea>
+                  <textarea id="" class="form-control" placeholder="Write your message." name="message" cols="30" rows="10"></textarea>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-6 mr-auto">
-                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5 rounded-0" value="Send Message">
+                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5 rounded-0" onsubmit="saveuserdata(first.value, last.value, email.value, message.value);" value="Send Message">
                 </div>
               </div>
             </form>
@@ -291,6 +291,24 @@ function saveToFirebase(email) {
         .then(function(snapshot) {
             console.log(emailObject);
             success(); // some success method
+        }, function(error) {
+            console.log('error' + error);
+            error(); // some error method
+        });
+}
+
+function saveuserdata(firstname, lastname, email, message) {
+    var emailObject1 = {
+        first_name: firstname,
+        last_name: lastname,
+        email_id: email,
+        message: message
+    };
+    console.log(emailObject1);
+
+    firebase.database().ref('customer-entries').push().set(emailObject1)
+        .then(function(snapshot) {
+            console.log(emailObject1);
         }, function(error) {
             console.log('error' + error);
             error(); // some error method
